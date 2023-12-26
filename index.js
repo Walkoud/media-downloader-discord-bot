@@ -175,7 +175,7 @@ client.on('messageCreate', message => {
            
           })
         } catch (error) {
-          msg.edit('An error occurred while downloading the video:', error);
+          message.reply('An error occurred while downloading the video:', error).then((m) => { deleteMessage(m); });
         }
       }
 
