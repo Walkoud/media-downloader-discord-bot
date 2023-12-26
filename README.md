@@ -1,2 +1,40 @@
-# media-downloader-discord-bot
-insta, tiktok, youtube, video download video - discord js v13 easy
+# Download video Insta/Tiktok/Youtube in Discord with one command !
+
+![272538853-3f57ad10-c80c-457a-9f49-679558eb2f79](https://github.com/Walkoud/insta-download-video-discordbot/assets/38588921/72a98736-a635-4d20-9193-fda4c38447e9)
+
+
+
+## Installation 
+
+### Download
+- Download the zip https://github.com/Walkoud/media-downloader-discord-bot/archive/master.zip <br/>
+- Download Nodejs [Node.js](https://nodejs.org/) Recommended. <br/>
+
+### Configuration
+- Edit config.json
+- Change token of bot
+- Additionnal : you can change prefix and commandname
+- Additionnal : you can allow the command only in one channel, set the false to true, and specify the channelid
+
+![image](https://github.com/Walkoud/insta-download-video-discordbot/assets/38588921/48aedb9a-ddb8-412d-ae4a-23971e8b12d2)
+
+
+
+### Install and launch
+
+- Open cmd or Terminal in the folder (shift and right click in the folder, then open powershell or cmd)
+- Install the dependencies and start the server. <br/>
+
+```sh
+$ npm install
+$ node index.js
+```
+
+
+## Credit
+
+- me <3
+- discord : walkoud
+- support : [the links](https://walkoud.carrd.co/) Join the support discord please
+
+![272538853-3f57ad10-c80c-457a-9f49-679558eb2f79](https://github.com/Walkoud/insta-download-video-discordbot/assets/38588921/72a98736-a635-4d20-9193-fda4c38447e9)
