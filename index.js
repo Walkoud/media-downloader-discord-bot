@@ -168,6 +168,7 @@ client.on('messageCreate', message => {
 
             videoStream.pipe(fs.createWriteStream(fileName));
             videoStream.on('end', async () => {
+              await deleteMessage(msg);
               await sendVideo(fileName);
               fs.unlinkSync(fileName);
             });
