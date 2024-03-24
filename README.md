@@ -5,12 +5,6 @@
 ![9YZ6uPpEoQ](https://github.com/Walkoud/media-downloader-discord-bot/assets/38588921/e3d56a4c-8945-4b94-98d4-b057769962d2)
 
 
-## ATTENTION 29/02/24
-
-For tiktok, the new version is bugged, please type <br/>
-```sh
-$ npm install @tobyg74/tiktok-api-dl@1.0.13
-```
 
 
 ## Installation 
