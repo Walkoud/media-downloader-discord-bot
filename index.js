@@ -21,7 +21,7 @@ const fs = require('fs');
 const ytdl = require('ytdl-core');
 
 
-const { TiktokDL } = require("@tobyg74/tiktok-api-dl")
+const { TiktokDownloader } = require("@tobyg74/tiktok-api-dl")
 
 
 let config = require("./config.json");
@@ -104,13 +104,14 @@ client.on('messageCreate', message => {
       }
 
     } else if (videoUrl.includes('tiktok.com/')) {
-      TiktokDL(videoUrl, {
+      TiktokDownloader(videoUrl, {
         version: "v1" //  version: "v1" | "v2" | "v3"
       }).then((result) => {
+        console.log(result)
         console.log(result.result.video[0]) // video url
       })
 
-      TiktokDL(videoUrl, {
+      TiktokDownloader(videoUrl, {
         version: "v1" // version: "v1" | "v2" | "v3"
       }).then((result) => {
         const videoLink = result.result.video[0];
