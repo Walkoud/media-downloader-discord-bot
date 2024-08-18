@@ -21,7 +21,7 @@ const fs = require('fs');
 const ytdl = require('ytdl-core');
 
 
-const { TiktokDownloader } = require("@tobyg74/tiktok-api-dl")
+const TiktokDownloader = require("@tobyg74/tiktok-api-dl")
 
 
 let config = require("./config.json");
@@ -104,18 +104,45 @@ client.on('messageCreate', message => {
       }
 
     } else if (videoUrl.includes('tiktok.com/')) {
-      TiktokDownloader(videoUrl, {
-        version: "v1" //  version: "v1" | "v2" | "v3"
+      TiktokDownloader.Downloader(videoUrl, {
+        version: "v2" //  version: "v1" | "v2" | "v3"
       }).then((result) => {
         console.log(result)
-        console.log(result.result.video[0]) // video url
+        console.log(result.result.video) // video url
       })
 
-      TiktokDownloader(videoUrl, {
-        version: "v1" // version: "v1" | "v2" | "v3"
+      TiktokDownloader.Downloader(videoUrl, {
+        version: "v2" // version: "v1" | "v2" | "v3"
       }).then((result) => {
-        const videoLink = result.result.video[0];
-        message.channel.send(`|| ${videoLink} || \nDownloaded by: \`${message.author.username}\` `);
+        const videoLink = result.result.video;
+        start2(videoLink);
+        async function start2(videoURL) {
+          try {
+            const response = await axios.get(videoURL, { responseType: 'stream' });
+            let count = 1;
+            let fileName = 'temp_video.mp4';
+
+            while (fs.existsSync(fileName)) {
+              fileName = `temp_video_${count}.mp4`;
+              count++;
+            }
+            const writer = fs.createWriteStream(fileName);
+            response.data.pipe(writer);
+            writer.on('finish', async () => {
+              try {
+                await message.channel.send({ content: `Downloaded by: \`${message.author.username}\``, files: [fileName] });
+                
+              } catch (error) {
+                console.error('Error sending the video:', error);
+                message.reply('An error occurred while sending the video.').then((m) => { deleteMessage(m) });
+              }
+              fs.unlinkSync(fileName);
+            });
+          } catch (error) {
+            console.error('Error downloading or sending the video:', error);
+            message.reply('An error occurred while sending the video.').then((m) => { deleteMessage(m) });
+          }
+        }
       }).catch((error) => {
         console.error('Error downloading TikTok video:', error);
         message.reply('An error occurred while downloading the TikTok video.').then((m) => { deleteMessage(m) })
