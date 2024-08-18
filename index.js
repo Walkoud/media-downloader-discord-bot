@@ -18,7 +18,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 const instagramGetUrl = require("instagram-url-direct")
 const axios = require('axios');
 const fs = require('fs');
-const ytdl = require('ytdl-core');
+const ytdl = require("@distube/ytdl-core");
 
 
 const TiktokDownloader = require("@tobyg74/tiktok-api-dl")
