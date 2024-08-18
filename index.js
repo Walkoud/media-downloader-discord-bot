@@ -15,7 +15,7 @@
 
 const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-const instagramDl = require("@sasmeee/igdl");
+const instagramGetUrl = require("instagram-url-direct")
 const axios = require('axios');
 const fs = require('fs');
 const ytdl = require('ytdl-core');
@@ -54,8 +54,8 @@ client.on('messageCreate', message => {
     if (videoUrl.includes("instagram.com/") || videoUrl.includes("instagram.com/")) {
       async function getVideo() {
         try {
-          const dataList = await instagramDl(videoUrl);
-          console.log(dataList[0].download_link);
+          let dataList = await instagramGetUrl(videoUrl);
+          console.log(dataList['url_list'][0]);
           return dataList;
         } catch {
           message.reply("Error: Invalid Video URL...").then((m) => { deleteMessage(m) });
@@ -78,7 +78,7 @@ client.on('messageCreate', message => {
       async function start() {
         let dataList = await getVideo();
         if (!dataList) return;
-        let videoURL = dataList[0].download_link;
+        let videoURL = dataList['url_list'][0];
 
         try {
           const response = await axios.get(videoURL, { responseType: 'stream' });
