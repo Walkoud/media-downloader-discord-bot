@@ -21,7 +21,7 @@ const fs = require('fs');
 const ytdl = require("@distube/ytdl-core");
 
 
-const { TiktokDownloader } = require("@tobyg74/tiktok-api-dl")
+//const { TiktokDownloader } = require("@tobyg74/tiktok-api-dl")
 
 
 let config = require("./config.json");
@@ -104,7 +104,7 @@ client.on('messageCreate', message => {
       }
 
     } else if (videoUrl.includes('tiktok.com/')) {
-      TiktokDownloader(videoUrl, {
+/*       TiktokDownloader(videoUrl, {
         version: "v1" //  version: "v1" | "v2" | "v3"
       }).then((result) => {
         console.log(result)
@@ -120,6 +120,8 @@ client.on('messageCreate', message => {
         console.error('Error downloading TikTok video:', error);
         message.reply('An error occurred while downloading the TikTok video.').then((m) => { deleteMessage(m) })
       });
+ */
+      message.reply('TikTok not currently supported.').then((m) => { deleteMessage(m) })
 
     } else if (videoUrl.includes("youtu.be/") || videoUrl.includes("youtube.com/")) {
       async function downloadVideo(url) {
