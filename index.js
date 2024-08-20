@@ -21,7 +21,8 @@ const fs = require('fs');
 const ytdl = require("@distube/ytdl-core");
 
 
-//const { TiktokDownloader } = require("@tobyg74/tiktok-api-dl")
+const TikTok = require("@tobyg74/tiktok-api-dl")
+
 
 
 let config = require("./config.json");
@@ -104,24 +105,36 @@ client.on('messageCreate', message => {
       }
 
     } else if (videoUrl.includes('tiktok.com/')) {
-/*       TiktokDownloader(videoUrl, {
-        version: "v1" //  version: "v1" | "v2" | "v3"
-      }).then((result) => {
-        console.log(result)
-        console.log(result.result.video[0]) // video url
-      })
 
-      TiktokDownloader(videoUrl, {
-        version: "v1" // version: "v1" | "v2" | "v3"
-      }).then((result) => {
-        const videoLink = result.result.video[0];
-        message.channel.send(`|| ${videoLink} || \nDownloaded by: \`${message.author.username}\` `);
-      }).catch((error) => {
-        console.error('Error downloading TikTok video:', error);
-        message.reply('An error occurred while downloading the TikTok video.').then((m) => { deleteMessage(m) })
-      });
- */
-      message.reply('TikTok not currently supported.').then((m) => { deleteMessage(m) })
+      (async () =>{
+        // Generate random filename for temp video file
+        let fileName = `${Date.now()}_tt.mp4`
+        try {
+          // Get the full mp4 video url
+          const ttRes = await TikTok.Downloader(videoUrl, { version: 'v3'})
+          const ttVideoLink = ttRes.result.videoHD ?? ttRes.result.video1;
+          
+          // Create a Writer to the temp video file and stream the contents of the video
+          const writer = fs.createWriteStream(fileName);
+          const fileStreamResult = await axios.get(ttVideoLink, { responseType: 'stream' });
+          fileStreamResult.data.pipe(writer);
+
+          // Wait until the pipe is finished and we send the video
+          await new Promise((res) => {
+            writer.on('finish', async () => {
+              await message.channel.send({ content: `Downloaded by: \`${message.author.username}\``, files: [fileName] });
+              res()
+            });
+          })
+        } catch (err) {
+          console.error(err)
+          message.reply("Error while getting tiktok vid")
+        } finally {
+          // Delete the cache file
+          fs.unlinkSync(fileName)
+          //deleteMessage(message)
+        } 
+      })()
 
     } else if (videoUrl.includes("youtu.be/") || videoUrl.includes("youtube.com/")) {
       async function downloadVideo(url) {
