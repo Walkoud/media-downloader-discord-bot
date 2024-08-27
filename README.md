@@ -4,6 +4,8 @@
 
 ![9YZ6uPpEoQ](https://github.com/Walkoud/media-downloader-discord-bot/assets/38588921/e3d56a4c-8945-4b94-98d4-b057769962d2)
 
+Autocrop : auto crop video to remove black bars 
+![image](https://github.com/user-attachments/assets/f53e9f13-98a4-4d5e-a2e1-fa67f959f8f0)
 
 
 
