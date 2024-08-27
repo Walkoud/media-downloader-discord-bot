@@ -34,6 +34,13 @@ $ node index.js
 ```
 
 
+## Supported links videos : 
+facebook, tiktok, twitter, instagram, youtube, pinterest, gdrive, capcut, likee, threads
+
+## NPM (use this)
+
+https://www.npmjs.com/package/media-downloader-ez
+
 ## Credit
 
 - me <3
