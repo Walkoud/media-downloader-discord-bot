@@ -18,9 +18,13 @@
 - Change token of bot
 - Additionnal : you can change prefix and commandname
 - Additionnal : you can allow the command only in one channel, set the false to true, and specify the channelid
+- Additionnel : autocropvideos : you can crop videos (remove black bars) automaticly
 
 ![image](https://github.com/Walkoud/insta-download-video-discordbot/assets/38588921/48aedb9a-ddb8-412d-ae4a-23971e8b12d2)
 
+
+To crop videos manually :
+!download http://sgkseogiesgoi. crop
 
 
 ### Install and launch
