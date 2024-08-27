@@ -26,7 +26,7 @@ Autocrop : auto crop video to remove black bars
 
 
 To crop videos manually :
-!download http://sgkseogiesgoi. crop
+!download http://sgkseogiesgoi crop
 
 
 ### Install and launch
